@@ -24,3 +24,5 @@ function get_store_list(page_num){
 }
 
 get_store_list(1);
+
+//testt
