@@ -1,0 +1,36 @@
+<style>
+  .padding-content {
+    top: 6em;
+    padding-left: 0;
+    padding-right: 0;
+    background: #ddd;
+  }
+</style>
+
+<ion-view ng-controller="notice_list">
+  <ion-content class="padding-content notice-list-content">
+
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ul class="list" ng-repeat="item in notice_list" style="text-align: left">
+      <li class="list-item" ng-click="notice_detail({{item.orderId}},{{item.orderStatus}},{{item.id}},{{item.status}})">
+        <!--            <li class="list-item" ng-click="notice_detail({{item.id}},{{item.status}})">-->
+        <div class="notice-list-title">
+          <div class="notice-time">
+            今天<br>12:10
+          </div>
+          <div class="notice-title">
+            <span ng-show="item.status==1">{{item.title}}</span>
+            <span ng-hide="item.status==1" style="">{{item.title}}</span>
+            <span ng-if="item.status == 1" style="color: red; margin-left: 3px;">●</span>
+          </div>
+          <div class="notice-icon">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </div>
+        
+        <div class="notice-list-desc">{{item.discribe}}</div>
+      </li>
+    </ul>
+    <ion-infinite-scroll ng-if="hasMore" on-infinite="loadData()" distance="5%"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

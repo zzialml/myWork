@@ -1,0 +1,95 @@
+<style>
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+        background: #ddd;
+    }
+    
+    .title_member .order_list_num {
+        width: 95%;
+        margin-left: 3%;
+        line-height: 2em;
+        font-size: 1.5em;
+        float: left;
+        clear: both;
+        overflow: hidden;
+    }
+    
+    .title_member span.order_list_time {
+        width: 95%;
+        margin-left: 3%;
+        line-height: 2em;
+        font-size: 1.5em;
+        float: left;
+        clear: both;
+        overflow: hidden;
+    }
+    
+    .gray {
+        color: #ddd;
+    }
+    
+    .orange {
+        color: #ffc900;
+    }
+    
+    .order-status {
+        padding: 0.7em 0 0;
+        width: 100%;
+        border-bottom: 0.1em solid rgb(153, 153, 153);
+    }
+    
+    .styled-select {
+        width: 240px;
+        height: 34px;
+        overflow: hidden;
+        background: url("http://images.cnblogs.com/cnblogs_com/shishm/201203/20120302110411201.jpg") no-repeat right #ddd;
+    }
+    
+    .styled-select select {
+        background: transparent;
+        width: 100px;
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        height: 34px;
+        -webkit-appearance: none;
+    }
+</style>
+<ion-view ng-controller="OrderListCtrl">
+    <ion-content class="padding-content has_headers notice-list-content">
+        <div class="order-status">
+            <input type="text" placeholder="输入 回车搜索" autofocus x-webkit-speech style="width:60%;float:left;line-height:3em;height:3em;font-size:85%;">
+            <img src="./img/project/search_1.png" style="width:7%;">
+            <div class="styled-select" style="    width: 30%;float: right;height: 3.1em;    margin-top: -.5em;    line-height: 3.5em;padding-right:2.5em;">
+
+                <select ng-change="list_change(x)" ng-model="x">
+                    <option value="0">全部 订单</option>
+                    <option value="1">未审核 订单</option>
+                    <option value="2">待付款 订单</option>
+                    <option value="3">审核失败 订单</option>
+                    <option value="4">待发货 订单</option>
+                    <option value="5">付款失败 订单</option>
+                    <option value="6">待收货 订单</option>
+                    <option value="7">已完成 订单</option>
+                    <!--                    <option value="8">支付确认 订单</option>-->
+                    <option value="-1">已取消 订单</option>
+                </select>
+            </div>
+        </div>
+        <div ng-repeat="item in OrderListData" class="item_title" style="margin-top: 5px; background: white;border-bottom: 1px solid #999;" ng-click="openDetail(item.id)">
+            <div class="title_member" style="width:80%;">
+                <div class="order_list_num">
+                    <span style="float: left">{{item.orderNum}}</span>
+                    <span style="float: right" ng-class="item.classStatus">{{item.status_str}}</span>
+                </div>
+                <span class="order_list_time">{{item.createTime}}</span>
+            </div>
+            <div class="title_opreation">
+                <div class="icon ion-chevron-right" style="font-size:2em; line-height: 3em"></div>
+            </div>
+        </div>
+        <ion-infinite-scroll ng-if="hasMore" on-infinite="loadData(cacheSataus)" distance="5%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

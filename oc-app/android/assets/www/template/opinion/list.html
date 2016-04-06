@@ -1,0 +1,55 @@
+<style>
+    .notice-list-desc {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+    }
+    
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+        background: #ddd;
+    }
+</style>
+<ion-view>
+    <ion-content class="padding-content notice-list-content" ng-controller="SuggestionListCtrl">
+        <ul class="list">
+            <li class="list-item" ng-repeat="item in suggestion_list">
+                <div ng-click="openDetail(item.id,item.createTime)" >
+                    <div class="opinion-list-title">
+                        <div class="opinion-list-title-right" style="font-size:75%;">{{item.createTime}}</div>
+                        <div class="opinion-list-title-left" ng-if="item.status ==1" style="font-size:110%;"><span>您已提交的内容:</span></div>
+                        <div class="opinion-list-title-left" ng-if="item.status ==2" style="font-size:110%;"><span>得到回复的内容：</span></div>
+                        <div class="opinion-list-title-left" ng-if="item.status ==0" style="font-size:110%;"><span >已取消内容为：</span></div>
+                    </div>
+                    <div ng-show="item.status==2"class="notice-list-desc" style="font-size:150%;color:#999;">{{item.handleContent}}</div>
+                    <div ng-show="item.status!=2"class="notice-list-desc" style="font-size:150%;color:#999;">{{item.content}}</div>
+                    
+                </div>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>
+
+
+<!--
+<ion-view >
+    <ion-content class="padding-content notice-list-content" ng-controller="SuggestionListCtrl">
+        <ul class="list">
+            <li class="list-item" ng-repeat="item in suggestion_list">
+                <div ng-click="openDetail(item.id,item.createTime)">
+                    <div class="opinion-list-title">
+                        <div class="opinion-list-title-left" style="font-size:110%;">{{item.createTime}}</div>
+                        <div class="opinion-list-title-right" ng-if="item.status ==1" style="font-size:80%;"><span class="text-origin">已提交</span></div>
+                        <div class="opinion-list-title-right" ng-if="item.status ==2" style="font-size:80%;"><span>已处理</span></div>
+                        <div class="opinion-list-title-right" ng-if="item.status ==0" style="font-size:80%;"><span>已取消</span></div>
+                    </div>
+                    <div class="notice-list-desc" style="font-size:150%;">{{item.content}}</div>
+                </div>
+            </li>
+        </ul>
+    </ion-content>
+</ion-view>
+-->

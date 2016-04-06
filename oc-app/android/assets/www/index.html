@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sc_shop_app">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no,target-densitydpi=device-dpi, width=device-width">
+  
+  
+    <title ng-bind="'鼎众帮 - ' + $rootScope.title"></title>
+
+    <link href="./nightly/css/ionic.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/select.css" rel="stylesheet">
+    <script src="./js/resetSize.js"></script>
+    <script src="./nightly/js/ionic.bundle.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/controller.js"></script>
+
+    <script src="./js/utils/app-conf.js"></script>
+    <script src="./js/utils/toast.js"></script>
+
+    <script src="./cordova.js"></script>
+    <script src="./cordova_plugins.js"></script>
+    <script src="./js/plugins/JpushPlugin.js"></script>
+    <script src="./js/plugins/JpushPlugin02.js"></script>
+
+    <script src="./js/plugins/PayPluginJava.js"></script>
+    <script src="./js/plugins/PayPluginJs.js"></script>
+
+    <script src="./js/plugins/AddImageJava.js"></script>
+    <script src="./js/plugins/AddImageJs.js"></script>
+    
+    <script src="./js/plugins/SuggestionJava.js"></script>
+    <script src="./js/plugins/SuggestionJs.js"></script>
+    
+    <script src="./js/plugins/DeviceJs.js"></script>
+
+    <script src="./js/FileFactory.js"></script>
+    
+    <script src="./js/jquery-2.1.4.js"></script>
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/jquery.fly.js"></script>
+    <script src="./js/jquery.fly.min.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener("deviceready", function () {
+            document.addEventListener("backbutton", function () {
+                console.log("------------------------------------1");
+                //                return;
+            }, false);
+        }, false);
+    </script>
+
+    <style>
+        .bar .bar-header {}
+    </style>
+</head>
+
+<body ng-controller="common_controller" cz-shortcut-listen="true">
+    <ion-side-menus>
+        
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar-header-center" style="height:10em;">
+                <ion-nav-buttons side="left">
+                    <button class="button button-icon icon ion-ios-arrow-left button-light" ng-click="$root.go_back()" ng-show="back_status" ></button>
+                    
+                    <button class="button button-icon icon menu-ctl-btn" ng-click="$root.go_cancel()" ng-show="cancel_status"><span class="menu-back" style="font-size:1.5em">取消</span></button>
+                    <button class="button button-icon icon menu-ctl-btn" ng-click="$root.go_index()" ng-show="index_status"><span class="menu-back" style="font-size:1.5em">首页</span></button>
+                </ion-nav-buttons>
+                <ion-nav-title class="title" style="font-size: 1.3em;margin-top:.35em;">
+                    {{title}}
+                </ion-nav-title>
+                <ion-nav-buttons side="right">
+                    <button class="button button-icon icon menu-ctl-btn" ng-click="$root.go_add()" ng-show="add_status" ><span class="menu-back" style="font-size:1.5em">添加</span></button>
+                    <button class="button button-icon icon menu-ctl-btn" ng-click="$root.go_commit()" ng-show="commit_status" ><span class="menu-back" style="font-size:1.5em">提交</span></button>
+                    <button class="button button-icon  home-msg" ng-click="$root.right_menu_ctrl()" ng-hide="add_status || commit_status" ><span class="new-notice" ng-if="hasMsg"></span></button>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+            <ion-nav-view style="text-align:center;"></ion-nav-view>
+        </ion-side-menu-content>
+
+        <!-- Right menu -->
+        <ion-side-menu side="right" ng-controller="right_menu" style="border-left: 1px solid #ddd;width:20em !important;" >
+            <ion-header-bar align-title="left" class="right-menu-bar title">
+                <span>消息中心</span>
+            </ion-header-bar>
+            <ion-content class="right-menu-content">
+                <ion-list>
+                    <div class="list" ng-repeat="item in right_menu">
+                        <div class="item item-icon-right font2 " ng-click="unread_notice_detail(item.id,item.orderId,item.orderStatus)">
+                            
+                               <span style="color: red; margin-left: 3px;">●</span> <span>{{item.title}}</span>
+                              <i class="icon ion-ios-arrow-right"></i>
+                            
+                            <div class="notice-list-desc">
+                                {{item.content}}
+                            </div>
+                        </div>
+                    </div>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu>
+
+    </ion-side-menus>
+</body>
+
+</html>

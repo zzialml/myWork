@@ -1,0 +1,17 @@
+<style>
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+        background: #ddd;
+    }
+</style>
+<ion-view  ng-controller="notice_detail">
+    <ion-content class="padding-content notice-list-content">
+        <div class="notice-detail-content">
+            <div class="notice-detail-title">标题党</div>
+            <div class="notice-detail-main" ng-bind-html="html">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

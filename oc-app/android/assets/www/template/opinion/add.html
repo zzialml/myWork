@@ -1,0 +1,39 @@
+<style>
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+/*        background: #ddd;*/
+    }
+    
+    .add_background {
+        width: 30%;
+        margin: .5em;
+        float: left;
+    }
+</style>
+<ion-view ng-controller="SuggestionCtrl">
+    <ion-content class="padding-content">
+
+
+
+        <textarea rows="15" style="width:100%;height:8em;padding:.5em;font-size:1.5em;line-height:1.1em;background-color:#f6f6f6" placeholder="输入您的意见" ng-model="value" ng-change="change(value)"></textarea>
+
+<!--
+        <div style="width:100%;">
+            <div class="add_background" style="height:10em;" ng-repeat="item in imageList">
+                <img src="{{item}}" style="max-width:100%;height:10em;">
+            </div>
+            <div class="add_background" ng-click="add_image()">
+                <img src="./img/project/1111_13.png" style="width:100%;"></img>
+            </div>
+        </div>
+-->
+
+        
+    </ion-content>
+</ion-view>
+
+
+
+<!--                    <img src="file:///storage/emulated/0/tencent/MicroMsg/WeiXin/microMsg.1455362607488.jpg" style="width:100%;height:{{height_image}};">-->

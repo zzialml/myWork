@@ -1,0 +1,148 @@
+<style>
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .summary-footer {
+        height: 3.5em;
+        border-top: 1px solid #ddd;
+    }
+    
+    .has_footer {
+        bottom: 3.5em;
+    }
+    
+    ion-content>div {
+        height: 100%;
+    }
+    
+    .food-item {
+        width: 100%;
+        float: left;
+        clear: both;
+    }
+    
+    .food-item-left {
+        width: 20%;
+        float: left;
+        clear: left;
+    }
+    
+    .food-item-left img {
+        width: 100%;
+        display: block;
+    }
+    
+    .food-item-right {
+        width: 79%;
+        float: right;
+        clear: right;
+    }
+    
+    .text {
+        width: 100%;
+        float: left;
+        text-align: left;
+    }
+    
+    .summary-left {
+        margin-left: .5em;
+        width: 100%;
+        float: left;
+        /*        line-height: 32px;*/
+        text-align: left;
+    }
+    
+    .summary-right {
+        float: right;
+        width: 20%;
+    }
+    
+    .btn-change {
+        min-width: 1.5em;
+        min-height: 1.5em;
+        line-height: normal;
+    }
+    
+    .goods-list {
+        width: 100%;
+        float: left;
+        background: white;
+    }
+</style>
+<ion-view ng-controller="ProductCtrl">
+    <ion-content class="padding-content has_footer" style="background: #ddd;overflow: hidden;background-color: #EEEEF3 !important;">
+        <p style="width:100%;height:2em;font-size:120%;padding-top: .5em;line-height: 2em;">订单提交后，将由悸动总部进行审核。</p>
+
+        <div class="goods-list">
+            <ion-list>
+                <ion-item ng-repeat="item in add_goods" style="line-height:1.5em">
+                    <div class="food-item">
+                        <div class="food-item-left">
+                            <img src="{{IMAGE_IP}}/api{{item.picture2}}" />
+                        </div>
+                        <div class="food-item-right">
+                            <span class="text" style="padding-left:1em;font-size:1.2em;padding-bottom:.3em;">{{item.name}} </span>
+                            <span class="text" style="padding-left:1em;font-size:1.2em;padding-bottom:.3em;color: #FEA143;"><span style=" font-family:Times New Roman,Windings;">￥</span><span style="font-family: Arial, Helvetica, sans-serif;">{{item.goodsPrice}}</span></span>
+
+
+                            <table  cellspacing="0" cellpadding="0"   style="text-align:center;height:1.7em;border-collapse:inherit;float:left;margin-left:1.3em;">
+                                <tr>
+                                    <td ng-click="minus_goods_fun(item.id)" style="width:1em;font-size:2em;border:1px solid #999;border-radius: 2em;">-</td>
+<!--                                    <td ng-if="!add_goods[item.id]" id="blurOrder_input{{item.id}}" style="font-size:1.5em;" contenteditable="true" ng-blur="blur(item.id)">0</td>-->
+                                    <td ng-if="add_goods[item.id]"  style="font-size:1.5em;width: 0.1em;"  ><input   style="width: 1.5em;font-size: 1em;line-height: 1.1em;    padding-left: .5em; " id="blurOrder_input{{item.id}}" ng-blur="blur(item.id)" type="tel" ng-model="item['add_num']"></td>
+                                    <td ng-click="add_goods_fun(item.id)" style="width:1em;font-size:2em;border:1px solid #999;border-radius: 2em;">+</td>
+                                </tr>
+                            </table> 
+<!--
+                            <table style="text-align:center;width:40%;height:1.7em;border-collapse:collapse;border:1px solid #999;float:left;margin-left:1.3em;">
+                                <tr>
+                                    <td ng-click="minus_goods_fun(item.id)" style="width:29%;font-size:2em;border:1px solid #999;line-height:1.1em;">-</td>
+                                    <td ng-if="!add_goods[item.id]" id="blurOrder_input{{item.id}}" style="font-size:1.5em;" contenteditable="true" ng-blur="blur(item.id)">0</td>
+                                    <td ng-if="add_goods[item.id]" id="blurOrder_input{{item.id}}" style="font-size:1.5em;" contenteditable="true" ng-blur="blur(item.id)">{{item['add_num']}}</td>
+                                    <td ng-click="add_goods_fun(item.id)" style="width:29%;font-size:2em;border:1px solid #999;line-height:1.1em;">+</td>
+                                </tr>
+                            </table>
+-->
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+
+
+
+
+    </ion-content>
+
+
+<div class="bar bar-footer" style="border-top: 1px solid #dddddd;height:4em;" >
+
+  
+ 
+        <span class="summary-left" style="height:100%;"><div style="height:60%;"><span style=" font-size:0.8em;">共计:</span><span style="font-size:0.8em;color:#ffaa33">￥</span><span style="font-size:0.8em;color:#ffaa33">{{goods_sum}}</span></div>
+    <br/>
+        <div style="margin-top:-0.8em;font-size:90%;height:40%;"><span>货品数量 ： {{goods_num}}</span></div>
+    </span>
+    <button class="button button-balanced summary-right" style="font-size:150%;width:7em;background-color:#29b6f6;margin: -.25em;" ng-click="commitData()">
+        提交订单
+    </button>
+    </div>
+
+
+
+<!--
+    <div class="bar bar-footer" style="border-top: 1px solid #dddddd;height:4em;">
+        <span class="summary-left" style="font-size:140%;line-height:2.5em;margin-left:1em;"><span style=" font-family:Times New Roman,Windings;font-size:160%;">￥</span><span style="font-family: Arial, Helvetica, sans-serif;font-size:160%;">{{goods_sum}}</span>| 货品数量{{goods_num}}</span>
+
+        <button class="button button-balanced summary-right" style="font-size:150%;width:7em;background-color:#29b6f6;margin: -.2em;" ng-click="commitData()">
+            确认下单
+        </button>
+    </div>
+-->
+
+
+   
+</ion-view>

@@ -1,0 +1,57 @@
+<style>
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+        background: #ddd;
+        background-color: #ddd;
+    }
+    
+    .titles {
+        margin-top: .3em;
+        /*        width: 100%;*/
+        height: 3.5em;
+        background-color: #ddd;
+    }
+    
+    .title_left {
+        float: left;
+        line-height: 3.2em;
+        font-size: 1.2em;
+        padding-left: 1em;
+    }
+    
+    .title_right {
+        float: right;
+        line-height: 3.2em;
+        font-size: 1.2em;
+        padding-right: 1em;
+    }
+</style>
+<ion-view ng-controller="SuggestionDetailCtrl" style="background-color:#f00">
+    <ion-content class="padding-content">
+        
+        <div style="width:100%;background-color:#ddd;"></div>
+        <div class="titles">
+            <span class="title_left">{{suggestion_detail.createTime}}</span>
+            <div class="title_right" ng-if="suggestion_detail.status ==1"><span class="text-origin">已提交</span></div>
+            <div class="title_right" ng-if="suggestion_detail.status ==2"><span>已处理</span></div>
+            <div class="title_right" ng-if="suggestion_detail.status ==0"><span>已取消</span></div>
+        </div>
+        <div style="width:100%;background-color:#fff;padding:1em;    font-size: 1.2em;">
+            <span style="float:left;">  内容摘要：{{suggestion_detail.content}}</span>
+        </div>
+        <div class="titles"style="margin-top: 2em;    font-size: 1.2em;" ng-show="suggestion_detail.status ==2">
+            <span class="title_left" >处理结果：</span>
+            <div class="title_right"><span>{{suggestion_detail.createTime}}</span></div>
+        </div>
+        <div style="width:100%;height:10em;background-color:#fff;padding:1em;    font-size: 1.2em;" ng-show="suggestion_detail.status ==2">
+            <span style="float:left;">  内容摘要：{{suggestion_detail.handle_content}}</span>
+        </div>
+
+    </ion-content>
+    <button class="button button-full button-assertive button-footer" style="margin-bottom:-3em" ng-if="suggestion_detail.status == 1" ng-click="cancelSuggestion(id)">
+        撤销
+    </button>
+
+</ion-view>

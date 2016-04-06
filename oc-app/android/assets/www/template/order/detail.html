@@ -1,0 +1,143 @@
+<style>
+  .summary-footer {
+    height: 3.5em;
+    border-top: 1px solid #ddd;
+  }
+  
+  .padding-content {
+    top: 6em;
+    padding-left: 0;
+    padding-right: 0;
+    background: #ddd;
+  }
+  
+  .summary_left {
+    float: left;
+    clear: left;
+    width: 70%;
+  }
+  
+  .summary_left_title {
+    width: 100%;
+    text-align: left;
+    padding-left: 1em;
+    font-size: 0.8em;
+    line-height: 1.5em;
+  }
+  
+  .summary_left_price {
+    width: 100%;
+    text-align: left;
+    padding-left: 2em;
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+  
+  .summary_right {
+    width: 30%;
+    float: right;
+    clear: left;
+  }
+  
+  .order-status {
+    padding: 0.5em 0;
+    width: 100%;
+  }
+  
+  .order-goods-list {
+    width: 100%;
+    float: left;
+    clear: both;
+    background: white;
+  }
+  
+  .order-goods-item {
+    width: 100%;
+    float: left;
+    clear: both;
+    border: 1px solid #d1d3d6;
+  }
+  
+  .order-goods-item-left {
+    float: left;
+    width: 20%;
+    clear: left;
+  }
+  
+  .order-goods-item-left img {
+    display: block;
+    /*        width: 4.5em;*/
+    width: 100%;
+    /*        height: 4em;*/
+    /*
+        margin-top: 0.5em;
+        margin-left: 10%;
+*/
+    margin: .5em;
+    line-height: 100%;
+  }
+  
+  .order-goods-item-right {
+    float: right;
+    width: 75%;
+    clear: right;
+  }
+  
+  .order-goods-item-right-item {
+    width: 100%;
+    float: left;
+    clear: both;
+    font-size: 1.2em;
+    line-height: 2em;
+  }
+  
+  .order-goods-item-right-item-name {
+    float: left;
+    clear: left;
+    /*        width: 20%;*/
+  }
+  
+  .order-goods-item-right-item-guige {
+    float: left;
+    /*        padding-left: 1em;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
+<ion-view ng-controller="OrderDetailCtrl">
+  <ion-content class="padding-content" style="overflow: hidden;background-color:#EEEEF3 !important">
+    <div class="order-status" style="height:3em;line-height: 2em;">订单状态：{{textStatus}}</div>
+    <div class="order-goods-list">
+      <div class="order-goods-item" ng-repeat="item in data">
+        <div class="order-goods-item-left">
+          <img src="{{IMAGE_IP}}/api{{item.picture2}}" />
+        </div>
+
+        <div class="order-goods-item-right">
+          <div class="order-goods-item-right-item">
+            <span class="order-goods-item-right-item-name">{{item.name}}</span>
+            <br />
+
+          </div>
+          <div class="order-goods-item-right-item" style="color: #FEA74F;">
+            <span style="float:left;">单价：<span style=" font-family:Times New Roman,Windings;">￥</span><span style="font-family: Arial, Helvetica, sans-serif;">{{item.price}}</span></span>
+          </div>
+          <div class="order-goods-item-right-item"><span style="float:left;">数量：{{item.num}}</span>
+          </div>
+          </p>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer summary-footer" style="padding:0 !important">
+    
+    <span class="summary-left" style="height:100%;"><div style="height:60%;"><span style=" font-size:0.8em;">共计:</span><span style="font-size:0.8em;color:#ffaa33">￥</span><span style="font-size:0.8em;color:#ffaa33">{{priceSum}}</span></div></span>
+    
+    
+    <div class="summary_right">
+      <button class="button button-balanced" ng-click="buttonOrder(orderStatus)" style="background-color:#29b6f6;    font-size: 1.5em;text-align: center;line-height: 1.5em; float: right;width: 4em;height: 2.5em;" ng-show="show_btn">
+        {{buttonStatus}}
+      </button>
+    </div>
+  </div>
+</ion-view>

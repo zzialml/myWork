@@ -1,0 +1,13 @@
+<ion-view ng-controller="SuggestionCtrl">
+    <ion-content class="padding">
+
+        <div style="width:100%;height:3em;background-color:#eee">
+            <div style="width:20%;float:left;line-height:3em;height:3em;" ng-click="cancel()"><span style="font-size:140%;">取消</span></div>
+            <div style="width:60%;float:left;line-height:3em;height:3em;"><span style="font-size:200%;">意见提交</span></div>
+            <div style="width:20%;float:right;line-height:3em;height:3em;" ng-click="commit()"><span style="font-size:140%;">提交</span></div>
+        </div>
+
+        <textarea rows="15" style="width:100%;margin:.5em;margin-top:1em;padding:.5em;font-size:150%;background-color:#eee" placeholder="输入您的意见" ng-model="value" ng-change="change(value)"></textarea>
+
+    </ion-content>
+</ion-view>

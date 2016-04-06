@@ -1,0 +1,103 @@
+<style>
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+        background: #000;
+    }
+    
+    .title_member .order_list_num {
+        height: 2.2em;
+        width: 100%;
+        line-height: 2em;
+        float: left;
+        clear: both;
+        overflow: hidden;
+    }
+    
+    .title_member span.order_list_time {
+        width: 100%;
+        /*        margin-left: 3%;*/
+        line-height: 2em;
+        font-size: 1.5em;
+        float: left;
+        clear: both;
+        overflow: hidden;
+    }
+    
+    .order_type01 {
+        width: 25%;
+        float: left;
+        height: 100%;
+        font-size: 1.5em;
+        line-height: 2.2em;
+        border-right: 1px solid #29b6f6;
+    }
+    
+    .order_type05 {
+        width: 25%;
+        float: left;
+        height: 100%;
+        font-size: 1.5em;
+        line-height: 2.2em;
+    }
+    
+    .button_css {
+        width: 4em;
+        margin: .3em;
+        margin-right: 1em;
+        line-height: 1.6em;
+        background-color: #29b6f6;
+        float: right;
+        border-radius: .3em;
+        text-align: center;
+        color: #ffffff;
+        font-size: 1.3em;
+    }
+</style>
+<ion-view ng-controller="TestCtrl">
+    <ion-content class="padding-content has_headers notice-list-content" >
+        <div style="border-bottom:3px solid #ddd">
+            <div style="width:94%;height:3.5em;border:2px solid #29b6f6;margin-top:1em;margin-bottom:.5em;margin-left:3%;border-radius:.7em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                <span class="order_type01" ng-click="changeOrderStatus(0,2)" style="{{order_type[0]}}border-bottom-left-radius: .3em;border-top-left-radius: .3em;">待审核</span>
+                <span class="order_type01" ng-click="changeOrderStatus(1,3)" style="{{order_type[1]}}">待付款</span>
+                <span class="order_type01" ng-click="changeOrderStatus(2,4)" style="{{order_type[2]}}">待收货</span>
+                <span class="order_type05" ng-click="changeOrderStatus(3,1)" style="{{order_type[3]}}border-bottom-right-radius: .3em;border-top-right-radius: .3em;">历史订单</span>
+            </div>
+        </div>
+
+
+
+        <div class="item_title" style="margin-top: 5px; background: white;border-bottom: 6px solid #ddd;" ng-repeat="item in orderData">
+            <div class="title_member" style="width:100%;">
+                <div class="order_list_num" style="border-bottom: 1px solid #ddd;">
+                    <span style="float: left;padding-left:1em;">{{item.createTime}}</span>
+                    <span style="float: right;padding-right:1em;color:{{item.classStatus}}">{{item.status_str}}</span>
+                </div>
+
+                <div style="width:100%;height: 10em;float: left;padding: 1em;" ng-click="openDetail(item.id)">
+                    <div style="float:left;width:65%;height: 7em;overflow: hidden;">
+                        <img src="{{pic}}" style="width: auto;height: 8em;" ng-repeat="pic in item.pictures">
+                    </div>
+
+
+                    <div style="overflow: hidden;width:30%;float:left;margin-top: 3em;" class="icon-right">
+                        <span style="overflow:hidden; margin-top: 2em; margin-left: 1.5em;">({{item.goodsNum}}个商品)</span>
+                        
+                    </div>
+                  <div class="icon ion-chevron-right" style="float:right;float:left;margin-top: 3em;"></div>
+                </div>
+                <div style="width:100%;border-top: 1px solid #ddd;height:3em;float: left;">
+                    <span style="float:left;line-height:2.5em;font-size:1.2em;padding-left:1em;">合计:<span style="color:#ffaa33;">￥{{item.goodsSum}}</span></span>
+                    <span ng-show="item.button_status != '- - -'" class="button_css" ng-click="commitButton(item.id)">{{item.button_status}}</span>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <ion-infinite-scroll ng-if="hasMore" on-infinite="loadData(cacheStatus)" distance="5%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

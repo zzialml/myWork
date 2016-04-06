@@ -1,0 +1,63 @@
+<ion-view ng-controller="ReserveShopCtrl">
+  <ion-content class="padding-content has_footer" style="overflow: hidden;">
+    <ion-scroll zooming="true" scrollbar-y="false" direction="y" style="float: left;width: 30%; height: 100%;background-color:#F5F5F5;overflow: hidden;margin-top: .5em;">
+      <ion-list>
+        <ion-item ng-repeat="item in goods_list" ng-click="choose_menu(item.id,$index)" style="{{chooseLeftStyle[$index]}}     border-color: rgba(221, 221, 221, 0) !important;  ">
+          <span class="font2"> {{item.name}}</span>
+        </ion-item>
+      </ion-list>
+    </ion-scroll>
+
+
+
+    <ion-scroll ng-repeat="menu_item in goods_list" ng-show="start_menu == menu_item.id" zooming="true" scrollbar-y="false" direction="y" style="float: left;width: 70%; height: 100%; background: #fff;overflow: hidden;margin-top: .5em;">
+
+      <ion-list>
+        <ion-item ng-repeat="item in menu_item.foodList">
+          <div class="food-item">
+            <div>
+              <img src="{{IMAGE_IP}}/api{{item.picture1}}" />
+            </div>
+            <div class="food-item-right" style="margin-left:1em;">
+              <span style="float:left;font-size:1.2em;padding-top:.3em;padding-bottom:.3em;margin-left: -.5em;">{{item.name}}</span>
+              <br />
+              <br />
+              <span style="float:left;font-size:1.2em;color:#ffaa33;line-height:1em;font-family: Arial, Helvetica, sans-serif;margin-left: -0.5em; "><span style=" font-family:Times New Roman,Windings">￥</span>{{item.goodsPrice}}</span>
+
+              <table style="text-align:center;border-collapse:inherit;float:right;margin-left: -.7em;">
+                <tr>
+                  <td ng-click="minus_goods_fun(item.id,item)" style="width:29%;font-size:2.5em;border:1px solid rgba(153, 153, 153, 0.57);border-radius: 2em;">-</td>
+         
+                  <td ng-blur="blur(item.id,item,$event)" style="font-size:1.5em;">
+                    <input style="width: 2em;font-size: 1em;text-align:center;    padding-left: .2em;" id="blur_input{{item.id}}" ng-blur="blur(item.id,item,$event)" type="tel" ng-model="add_goods[item.id]['add_num']" value="0">
+                  </td>
+                  <td ng-click="add_goods_fun(item.id,item,$event)" style="width:29%;font-size:2em;border:1px solid rgba(153, 153, 153, 0.57);border-radius: 2em;">+</td>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+        </ion-item>
+      </ion-list>
+    </ion-scroll>
+  </ion-content>
+
+  <div class="bar bar-footer" style="border-top: 1px solid #F5F5F5;height:4em;" id="end">
+
+    <span class="summary-left" style="height:100%;"><div style="height:60%;"><span style=" font-family:Times New Roman,Windings;font-size:0.8em;">&nbsp;共计:</span><span style=" font-family:Times New Roman,Windings;font-size:0.8em;color:#ffaa33">￥</span><span style="font-family: Arial, Helvetica, sans-serif;font-size:0.8em;color:#ffaa33">{{goods_sum}}</span></div>
+  <br/>
+  
+  </span>
+  <!--
+    <button class="button button-balanced summary-right" style="font-size:150%;width:7em;background-color:#29b6f6;margin: -.2em;" ng-click="sub_goods()">
+    提交订单
+</button>
+-->
+
+  <button class="button button-balanced summary-right" style="font-size:1.5em;width:7em;background-color:#29b6f6;" ng-click="sub_goods()">
+    提交 ( {{goods_num}} )
+  </button>
+  </div>
+
+
+</ion-view>

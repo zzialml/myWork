@@ -1,0 +1,182 @@
+<div ng-repeat="item in goodData" >
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.5em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">{{item.name}} </span><span style="float:right;">单价：￥{{item.goodsPrice}}</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;font-size:80%">{{item.description}}</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em" ng-click="minus(item.listId,item.id,item.num)"></div>
+                    <input type="number" style="width:3em;height:1.5em;display:inline;" ng-model="item.num" ng-change="change(item.listId,item.id,item.num)">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em" ng-click="add(item.listId,item.id,item.num)"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.2em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.2em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.2em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.2em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.2em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+-->
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!--
+<div>
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.5em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+
+
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.2em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+
+    <div style="width:100%; border: 0.1em solid #aaa;height:7em">
+        <img src="img/icon/shop_good.png" style="height:100%;float:left;" />
+        <div style="width:65%;font-size:120%;float:right;padding:.5em;margin-top:-.6em">
+            <p style="padding-top:.7em;"><span style="float:left;">黄水仙</span><span style="float:right;">单价：￥99</span></p>
+            <p style="padding-top:.7em;"><span style="float:left;">订货规格：</span><span style="float:right;">一箱包含99包</span></p>
+            <p style="padding-top:.7em"><span style="float:left;">订购数量：</span>
+                <div style="float:right;margin-top:-.5em">
+                    <div class="icon ion-minus-circled" style="float:left;padding:.1em;margin-right:.5em"></div>
+                    <input type="number" readonly="readonly" style="width:3em;height:1.5em;display:inline;">
+                    <span class="icon ion-plus-circled" style="float:right;padding:.1em;margin-left:.5em"></span>
+                </div>
+            </p>
+        </div>
+
+    </div>
+
+
+</div>-->

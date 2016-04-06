@@ -1,0 +1,49 @@
+<style>
+    
+    .padding-content {
+        top: 6em;
+        padding-left: 0;
+        padding-right: 0;
+        background: #ddd;
+    }
+
+    
+    input.change_pwd{
+        font-size: 2em;
+        line-height: 1.2em;
+        height: 1.2em;
+    }
+</style>
+<ion-view view-title="账户设置">
+    <ion-content class="padding-content">
+        <div class="row" style="margin-top: 20%">
+            <div class="col col-50 col-offset-25">
+                <span style="width: 100%; text-align: center; font-size: 2.5em">
+                    修改密码
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-50 col-offset-25">
+                <div class="list list-inset">
+                    <label class="item item-input">
+                        <input type="password" placeholder="原密码" class="change_pwd">
+                    </label>
+                    <label class="item item-input">
+                        <input type="password" placeholder="新密码" class="change_pwd">
+                    </label>
+                    <label class="item item-input">
+                        <input type="password" placeholder="确认密码" class="change_pwd">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-50 col-offset-25">
+                <button class="button button-full button-positive">
+                    确认
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
